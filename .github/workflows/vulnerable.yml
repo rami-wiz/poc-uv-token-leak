@@ -1,0 +1,19 @@
+name: Vulnerable Workflow
+
+on:
+  pull_request_target:
+    types: [opened, synchronize]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - uses: astral-sh/setup-uv@v6
+
+      - name: Run check with secret
+        run: |
+          uv run python scripts/check.py --token "${{ secrets.MARKETPLACE_TOKEN }}"
